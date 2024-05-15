@@ -16,7 +16,7 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedCity, onSelectChange, c
   const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = e.target.value;
     if (selectedValue === "全台跑透透") {
-      onSelectChange(''); // 清除前一個選擇的狀態
+      onSelectChange('');
     } else {
       setLocalSelectedCity(selectedValue);
       onSelectChange(selectedValue); 

@@ -1,5 +1,7 @@
+'use client'
+
 import { useState, useEffect } from 'react';
-import { useRouter, withRouter  } from 'next/dist/client/router'
+import { useRouter } from 'next/navigation';
 import useFetchData from '../hooks/useFetchData';
 
 interface SubmitButtonProps {
@@ -13,7 +15,9 @@ interface SubmitButtonProps {
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({ category, selectedFav, selectedDate, selectedCity, selectedFree }) => {
   const router = useRouter();
-  
+
+  const { routerReady: queryRouterReady, userSelection: queryUserSelection, filteredData: queryFilteredData } = query;
+
   const [routerReady, setRouterReady] = useState(false);
   const [userSelection, setUserSelection] = useState({
     selectedDate: selectedDate,
@@ -29,14 +33,11 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ category, selectedFav, sele
   const { filteredData, isLoading, error, mutate } = useFetchData(fetchParams);
 
   useEffect(() => {
-    console.log("Router ready status:", router.isReady);
-  }, [router]);
-
-  useEffect(() => {
-    if (router && router.isReady) {
+    console.log("Router ready status:", queryRouterReady);
+    if (router) {
       setRouterReady(true);
     }
-  }, [router]);
+  }, [router, queryRouterReady]);
 
   const getCategory = (selectedFav: string): string => {
     switch (selectedFav) {
@@ -79,26 +80,19 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ category, selectedFav, sele
   };
 
   useEffect(() => {
-    console.log("Router ready status:", router.isReady);
-    if (router && router.isReady) {
-      setRouterReady(true);
-    }
-  }, [router]);
-
-  useEffect(() => {
-    if (routerReady && router.isReady && userSelection.category) {
+    if (routerReady && userSelection.category) {
       mutate();
     }
-  }, [routerReady, router.isReady, userSelection.category, mutate]);
+  }, [routerReady, userSelection.category, mutate]);
 
   useEffect(() => {
-    if (routerReady && router.isReady && userSelection.category && filteredData.length > 0) {
+    if (routerReady && queryUserSelection && queryFilteredData && queryFilteredData.length > 0) {
       router.push({
         pathname: '/routes/results',
-        query: { filteredData: JSON.stringify(filteredData) }
+        query: { filteredData: JSON.stringify(queryFilteredData) }
       });
     }
-  }, [routerReady, router.isReady, userSelection.category, filteredData, router]);
+  }, [routerReady, queryUserSelection, queryFilteredData, router]);
 
   return (
     <button 
