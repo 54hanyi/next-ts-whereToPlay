@@ -1,27 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router'
 import { EventData } from '../../interface/dataType';
 
 const ResultsPage = () => {
-  const router = useRouter();
   const [filteredData, setFilteredData] = useState<EventData[]>([]);
-
-  useEffect(() => {
-    if (router.isReady) {
-      const queryParams = new URLSearchParams(router.asPath.split('?')[1]);
-      const filteredDataString = queryParams.get('filteredData');
-      if (filteredDataString) {
-        const parsedData = JSON.parse(filteredDataString) as EventData[];
-        setFilteredData(parsedData);
-      }
-    }
-  }, [router.isReady, router.asPath]);
 
   return (
     <div>
-      <h1>Results Page</h1>
+      <h1>好多地方可以玩</h1>
       {filteredData && filteredData.length > 0 ? (
         <ul className='text-red-600'>
           {filteredData.map((data, index) => (

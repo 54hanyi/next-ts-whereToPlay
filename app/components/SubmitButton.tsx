@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import useFetchData from '../hooks/useFetchData';
 
 interface SubmitButtonProps {
@@ -14,10 +13,6 @@ interface SubmitButtonProps {
 
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({ category, selectedFav, selectedDate, selectedCity, selectedFree }) => {
-  const router = useRouter();
-
-  const { routerReady: queryRouterReady, userSelection: queryUserSelection, filteredData: queryFilteredData } = query;
-
   const [routerReady, setRouterReady] = useState(false);
   const [userSelection, setUserSelection] = useState({
     selectedDate: selectedDate,
@@ -31,13 +26,6 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ category, selectedFav, sele
     category: userSelection.category ? userSelection.category : null,
   };
   const { filteredData, isLoading, error, mutate } = useFetchData(fetchParams);
-
-  useEffect(() => {
-    console.log("Router ready status:", queryRouterReady);
-    if (router) {
-      setRouterReady(true);
-    }
-  }, [router, queryRouterReady]);
 
   const getCategory = (selectedFav: string): string => {
     switch (selectedFav) {
@@ -84,15 +72,6 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ category, selectedFav, sele
       mutate();
     }
   }, [routerReady, userSelection.category, mutate]);
-
-  useEffect(() => {
-    if (routerReady && queryUserSelection && queryFilteredData && queryFilteredData.length > 0) {
-      router.push({
-        pathname: '/routes/results',
-        query: { filteredData: JSON.stringify(queryFilteredData) }
-      });
-    }
-  }, [routerReady, queryUserSelection, queryFilteredData, router]);
 
   return (
     <button 
