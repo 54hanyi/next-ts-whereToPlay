@@ -41,8 +41,11 @@ export interface EventData {
 }
 
 export interface FilteredEventData {
-  endTime: string;
+  title: string;
+  descriptionFilterHtml: string;
   time: string;
   location: string;
   price: string;
+  endTime: string;
+  locationName: string;
 }
