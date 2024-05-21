@@ -14,8 +14,8 @@ export default function Page() {
   const [selectedCity, setSelectedCity] = useState<string>('');
   const [selectedFree, setSelectedFree] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [dataFetched, setDataFetched] = useState<boolean>(false);  // 新增這行
-  const [filteredData, setFilteredData] = useState<any>(null);  // 新增這行
+  const [dataFetched, setDataFetched] = useState<boolean>(false);
+  const [filteredData, setFilteredData] = useState<any>(null);
 
   const handleFavSelected = (selectedFav: string) => {
     setSelectedFav(selectedFav);
@@ -38,16 +38,16 @@ export default function Page() {
     console.log("要不要錢?", selectedFree);
   };
 
-  const handleFetchSuccess = (success: boolean, data: any) => {  // 新增這個函數
+  const handleFetchSuccess = (success: boolean, data: any) => {
     setDataFetched(success);
     setFilteredData(data);
   };
 
   return (
-    <div className='px-72 py-20'>
+    <div className='py-32 lg:py-20 lg:px-60'>
       <div className="flex justify-center items-center flex-col gap-10">
         <div className='mb-4'>
-          <h1 className="text-6xl font-bold">放假好去處</h1>
+          <h1 className="text-4xl sm:text-6xl font-bold text-center">放假好去處</h1>
         </div>
         {!dataFetched ? (
           <>
@@ -84,4 +84,3 @@ export default function Page() {
     </div>
   );
 }
-
