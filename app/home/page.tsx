@@ -44,7 +44,7 @@ export default function Page() {
   };
 
   return (
-    <div className='py-32 lg:py-20 lg:px-60'>
+    <div className='h-full py-20 md:py-32 lg:py-20 lg:px-60'>
       <div className="flex justify-center items-center flex-col gap-10">
         {!dataFetched ? (
           <>
@@ -79,7 +79,7 @@ export default function Page() {
           </>
         ) : (
           <>
-            <div className='mb-4'>
+            <div>
               <h1 className="text-4xl  font-bold text-center">好多地方可以去</h1>
             </div>
             <Results data={filteredData} />
