@@ -46,11 +46,11 @@ export default function Page() {
   return (
     <div className='py-32 lg:py-20 lg:px-60'>
       <div className="flex justify-center items-center flex-col gap-10">
-        <div className='mb-4'>
-          <h1 className="text-4xl sm:text-6xl font-bold text-center">放假好去處</h1>
-        </div>
         {!dataFetched ? (
           <>
+            <div className='mb-4'>
+              <h1 className="text-4xl sm:text-6xl font-bold text-center">放假好去處</h1>
+            </div>
             <FavSelect
               onSelectChange={handleFavSelected}
               favOptions={favOptions}
@@ -78,7 +78,12 @@ export default function Page() {
             />
           </>
         ) : (
-          <Results data={filteredData} />
+          <>
+            <div className='mb-4'>
+              <h1 className="text-4xl  font-bold text-center">好多地方可以去</h1>
+            </div>
+            <Results data={filteredData} />
+          </>
         )}
       </div>
     </div>

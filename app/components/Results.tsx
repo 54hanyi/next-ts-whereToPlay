@@ -9,12 +9,11 @@ interface ResultsProps {
 const Results: React.FC<ResultsProps> = ({ data }) => {
   return (
     <div>
-      <h1 className='text-xl'>好多地方可以去：</h1>
       {data && data.length > 0 ? (
-        <ul className='list-decimal pl-6 space-y-4'>
+        <ul className='list-decimal p-12 space-y-4'>
           {data.map((data, index) => (
             <li key={index} className='space-y-2'>
-              <h2 className='text-2xl'>{data.title}</h2>
+              <h2 className='text-2xl text-sky-600'>{data.title}</h2>
               <p>開始時間: {data.time}</p>
               <p>結束時間: {data.endTime}</p>
               <p>活動地點: {data.location} - {data.locationName}</p>
