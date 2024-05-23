@@ -77,6 +77,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ category, selectedFav, sele
       console.log(filteredData);
     } else {
       onFetchSuccess(false, []);
+      alert("沒地方去囉");
     }
   };
 

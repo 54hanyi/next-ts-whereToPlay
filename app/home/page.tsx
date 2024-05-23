@@ -44,7 +44,7 @@ export default function Page() {
   };
 
   return (
-    <div className='h-full py-20 md:py-32 lg:py-20 lg:px-60'>
+    <div className='min-h-screen py-20 md:py-32 lg:py-20 lg:px-60'>
       <div className="flex justify-center items-center flex-col gap-10">
         {!dataFetched ? (
           <>
