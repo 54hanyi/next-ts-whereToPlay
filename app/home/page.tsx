@@ -19,28 +19,32 @@ export default function Page() {
 
   const handleFavSelected = (selectedFav: string) => {
     setSelectedFav(selectedFav);
-    console.log("Selected fav value:", selectedFav);
+    // console.log("Selected fav value:", selectedFav);
   };
 
   const handleDateSelected = (selectedDate: Date) => {
     const date = selectedDate ? selectedDate : null;
     setSelectedDate(date);
-    console.log("父組件所選日期:", date);
+    // console.log("父組件所選日期:", date);
   };
 
   const handleCitySelected = (selectedCity: string) => {
     setSelectedCity(selectedCity);
-    console.log("所選縣市:", selectedCity);
+    // console.log("所選縣市:", selectedCity);
   };
 
   const handleFreeSelected = (selectedFree: string) => {
     setSelectedFree(selectedFree);
-    console.log("要不要錢?", selectedFree);
+    // console.log("要不要錢?", selectedFree);
   };
 
   const handleFetchSuccess = (success: boolean, data: any) => {
     setDataFetched(success);
     setFilteredData(data);
+  };
+
+  const handleBack = () => {
+    setDataFetched(false);
   };
 
   return (
@@ -80,9 +84,9 @@ export default function Page() {
         ) : (
           <>
             <div>
-              <h1 className="text-4xl  font-bold text-center">好多地方可以去</h1>
+              <h1 className="text-4xl font-bold text-center">好多地方可以去</h1>
             </div>
-            <Results data={filteredData} />
+            <Results data={filteredData} onBack={handleBack} />
           </>
         )}
       </div>

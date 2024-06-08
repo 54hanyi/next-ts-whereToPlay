@@ -42,10 +42,10 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
 
   const filterData = useCallback((data: FilteredEventData[]): FilteredEventData[] => {
     const selectedDateTimestamp = selectedDate.getTime();
-    console.log("Filtering Data:");
-    console.log("Selected Date Timestamp:", selectedDateTimestamp);
-    console.log("Selected City:", selectedCity);
-    console.log("Selected Free:", selectedFree);
+    // console.log("Filtering Data:");
+    // console.log("Selected Date Timestamp:", selectedDateTimestamp);
+    // console.log("Selected City:", selectedCity);
+    // console.log("Selected Free:", selectedFree);
 
     return data.filter((item: FilteredEventData) => {
       const { time, endTime, location, price } = item;
@@ -63,15 +63,14 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
           (isNotFreeSelected && !price.includes('免費') && price !== '') ||
           isAllSelected);
 
-      // 添加调试信息
-      console.log(`Event: ${item.title}`);
-      console.log(`Time: ${new Date(time)} - ${new Date(endTime)}`);
-      console.log(`Location: ${itemCity}`);
-      console.log(`Price: ${price}`);
-      console.log(`isDateMatch: ${isDateMatch}`);
-      console.log(`isCityMatch: ${isCityMatch}`);
-      console.log(`isPriceMatch: ${isPriceMatch}`);
-      console.log(`Matches: ${isDateMatch && isCityMatch && isPriceMatch}`);
+      // console.log(`Event: ${item.title}`);
+      // console.log(`Time: ${new Date(time)} - ${new Date(endTime)}`);
+      // console.log(`Location: ${itemCity}`);
+      // console.log(`Price: ${price}`);
+      // console.log(`isDateMatch: ${isDateMatch}`);
+      // console.log(`isCityMatch: ${isCityMatch}`);
+      // console.log(`isPriceMatch: ${isPriceMatch}`);
+      // console.log(`Matches: ${isDateMatch && isCityMatch && isPriceMatch}`);
 
       return isDateMatch && isCityMatch && isPriceMatch;
     });
@@ -103,11 +102,11 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
 
   useEffect(() => {
     if (data) {
-      console.log('Fetched Data:', data); // 调试信息
+      // console.log('Fetched Data:', data); 
       const mappedData = mapEventData(data);
-      console.log('Mapped Data:', mappedData); // 调试信息
+      // console.log('Mapped Data:', mappedData); 
       const filteredItems = filterData(mappedData);
-      console.log('Filtered Items:', filteredItems); // 调试信息
+      // console.log('Filtered Items:', filteredItems); 
       onFetchSuccess(true, filteredItems);
       setIsLoading(false);
     }
@@ -115,7 +114,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
 
   useEffect(() => {
     if (swrError) {
-      console.error('SWR Error:', swrError); // 调试信息
+      // console.error('SWR Error:', swrError);
       setError(swrError.message || '發生錯誤');
       setIsLoading(false);
       onFetchSuccess(false, []);
@@ -138,7 +137,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
 
     setUrl(fullURL);
 
-    console.log('Request URL:', fullURL);
+    // console.log('Request URL:', fullURL);
   };
 
   return (

@@ -1,14 +1,24 @@
 'use client'
 
+import React from 'react';
+import Image from 'next/image';
 import { FilteredEventData } from '../interface/dataType';
+import arrowLeft from '../../public/images/arrow_left.png'; // 更正导入语法
 
 interface ResultsProps {
   data: FilteredEventData[];
+  onBack: () => void;
 }
 
-const Results: React.FC<ResultsProps> = ({ data }) => {
+const Results: React.FC<ResultsProps> = ({ data, onBack }) => {
   return (
     <div>
+      <button 
+        className='flex px-12 text-center rounded-md cursor-pointer hover:text-sky-600'
+        onClick={onBack}
+      >
+        <Image src={arrowLeft} alt="Back arrow" width={24} height={24} /> 重新搜尋{/* 使用 <Image /> 组件 */}
+      </button>
       {data && data.length > 0 ? (
         <ul className='list-decimal p-12 space-y-4'>
           {data.map((data, index) => (

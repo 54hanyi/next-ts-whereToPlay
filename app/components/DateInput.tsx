@@ -17,9 +17,9 @@ const DateInput: React.FC<DateInputProps> = ({ onDateChange, selectedDate}) => {
     const selectedDate = new Date(e.target.value);
     setLocalSelectedDate(selectedDate);
     onDateChange(selectedDate);
-    console.log(`Date組件${selectedDate}`);
-    console.log(`Date組件類型：${typeof selectedDate}`);
-    console.log(`Date組件類型：${selectedDate instanceof Date ? 'Date' : typeof selectedDate}`);
+    // console.log(`Date組件${selectedDate}`);
+    // console.log(`Date組件類型：${typeof selectedDate}`);
+    // console.log(`Date組件類型：${selectedDate instanceof Date ? 'Date' : typeof selectedDate}`);
 
   };
 
