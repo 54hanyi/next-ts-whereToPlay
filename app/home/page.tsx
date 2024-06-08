@@ -48,12 +48,12 @@ export default function Page() {
   };
 
   return (
-    <div className='min-h-screen py-20 md:py-32 lg:py-20 lg:px-60'>
+    <div className='min-h-screen py-20 md:py-32 lg:py-16 lg:px-60'>
       <div className="flex justify-center items-center flex-col gap-6">
         {!dataFetched ? (
           <>
             <div className='mb-4'>
-              <h1 className="text-4xl sm:text-6xl font-bold text-center">放假好去處</h1>
+              <h1 className="text-4xl sm:text-5xl font-bold text-center">放假好去處</h1>
             </div>
             <FavSelect
               onSelectChange={handleFavSelected}
