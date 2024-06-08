@@ -10,7 +10,7 @@ interface ResultsProps {
 
 const Results: React.FC<ResultsProps> = ({ data, onBack }) => {
   return (
-    <div className='container mx-auto p-4 max-w-full sm:max-w-xl'> 
+    <div className='container mx-auto p-4 max-w-full sm:max-w-3xl'> 
       <button 
         className='flex items-center mb-4 text-center rounded-md cursor-pointer hover:text-sky-600'
         onClick={onBack}
