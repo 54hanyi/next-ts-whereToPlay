@@ -48,12 +48,12 @@ export default function Page() {
   };
 
   return (
-    <div className='min-h-screen py-20 md:py-32 lg:py-16 lg:px-60'>
-      <div className="flex justify-center items-center flex-col gap-6">
+    <div className='min-h-screen py-10 px-4 sm:px-20 md:px-60 md:py-20'>
+      <div className="flex flex-col justify-center items-center gap-6 w-full">
         {!dataFetched ? (
           <>
-            <div className='mb-4'>
-              <h1 className="text-4xl sm:text-5xl font-bold text-center">放假好去處</h1>
+            <div className='mb-4 w-full'>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-center">放假好去處</h1> 
             </div>
             <FavSelect
               onSelectChange={handleFavSelected}
@@ -83,10 +83,10 @@ export default function Page() {
           </>
         ) : (
           <>
-            <div>
-              <h1 className="text-4xl font-bold text-center">好多地方可以去</h1>
+            <div className='w-full'>
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-center">好多地方可以去</h1> 
             </div>
-            <Results data={filteredData} onBack={handleBack} />
+            <Results data={filteredData} onBack={handleBack} /> 
           </>
         )}
       </div>
