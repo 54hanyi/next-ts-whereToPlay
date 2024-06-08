@@ -1,5 +1,4 @@
 export const favOptions = [
-  { value: "", label: "選擇您的喜好", disabled: true },
   { value: "展覽", label: "展覽" },
   { value: "講座", label: "講座" },
   { value: "音樂表演", label: "音樂表演" },
@@ -11,7 +10,6 @@ export const favOptions = [
 ];
 
 export const citiesOptions = [
-  { value: "", label: "選擇您的縣市", disabled: true },
   { value: "全台跑透透", label: "全台跑透透" },
   { value: "基隆市", label: "基隆市" },
   { value: "臺北市", label: "臺北市" },

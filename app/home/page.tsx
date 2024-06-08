@@ -12,7 +12,7 @@ import Results from '../components/Results';
 export default function Page() {
   const [selectedFav, setSelectedFav] = useState<string>('');
   const [selectedCity, setSelectedCity] = useState<string>('');
-  const [selectedFree, setSelectedFree] = useState<string>('');
+  const [selectedFree, setSelectedFree] = useState<string>('都可以');
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [dataFetched, setDataFetched] = useState<boolean>(false);
   const [filteredData, setFilteredData] = useState<any>(null);
@@ -45,7 +45,7 @@ export default function Page() {
 
   return (
     <div className='min-h-screen py-20 md:py-32 lg:py-20 lg:px-60'>
-      <div className="flex justify-center items-center flex-col gap-10">
+      <div className="flex justify-center items-center flex-col gap-6">
         {!dataFetched ? (
           <>
             <div className='mb-4'>
@@ -69,12 +69,12 @@ export default function Page() {
               required
             />
             <SubmitButton
-              category={selectedFav}
               selectedFav={selectedFav}
               selectedDate={selectedDate ? selectedDate : new Date()}
               selectedCity={selectedCity}
               selectedFree={selectedFree}
               onFetchSuccess={handleFetchSuccess} 
+              setSelectedFav={setSelectedFav}
             />
           </>
         ) : (

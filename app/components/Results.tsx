@@ -23,7 +23,7 @@ const Results: React.FC<ResultsProps> = ({ data }) => {
           ))}
         </ul>
       ) : (
-        <p>啥也沒有，待在家吧</p>
+        <p>沒地方去，待在家吧</p>
       )}
     </div>
   );

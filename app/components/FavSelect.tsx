@@ -8,7 +8,7 @@ interface FavSelectProps {
 }
 
 const FavSelect: React.FC<FavSelectProps> = ({ onSelectChange, favOptions, selected }) => {
-  const [localSelectedFav, setLocalSelectedFav] = useState<string>(selected);
+  const [localSelectedFav, setLocalSelectedFav] = useState<string>('');
 
   const handleFavChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = e.target.value;
@@ -21,21 +21,28 @@ const FavSelect: React.FC<FavSelectProps> = ({ onSelectChange, favOptions, selec
   }, [selected]);
 
   return (
-    <select
-      className='text-center h-[48px] w-[40%] rounded-md border-2 border-gray-200 cursor-pointer focus:bg-gray-100'
-      value={localSelectedFav}
-      onChange={handleFavChange}
-    >
-      {favOptions.map((option) => (
-        <option
-          key={option.value}
-          value={option.value}
-          disabled={option.disabled}
+    <>
+      <div className='w-[40%]'>
+        <div>
+          <p>您的喜好</p>
+        </div>
+        <select
+          className='text-center h-[48px] w-[100%] rounded-md border-2 border-gray-200 cursor-pointer focus:bg-gray-100'
+          value={localSelectedFav}
+          onChange={handleFavChange}
         >
-          {option.label}
-        </option>
-      ))}
-    </select>
+          {favOptions.map((option) => (
+            <option
+              key={option.value}
+              value={option.value}
+              disabled={option.disabled}
+            >
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+    </>
   );
 };
 

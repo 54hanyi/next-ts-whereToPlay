@@ -7,7 +7,7 @@ interface FreeSelectProps {
 }
 
 const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange }) => {
-  const [localSelectedFree, setLocalSelectedFree] = useState<string>('');
+  const [localSelectedFree, setLocalSelectedFree] = useState<string>('都可以');
   
   useEffect(() => {
     setLocalSelectedFree(selectedFree);
@@ -20,16 +20,22 @@ const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange })
   };
 
   return (
-    <select
-      className='text-center h-[48px] w-[40%] rounded-md border-2 border-gray-200 cursor-pointer focus:bg-gray-100'
-      value={localSelectedFree}
-      onChange={handleFreeChange}
-    >
-      <option value="" disabled>是否免費</option>
-      <option value="是">是</option>
-      <option value="不是">不是</option>
-      <option value="都可以">都可以</option>
-    </select>
+    <>
+      <div className='w-[40%]'>
+        <div>
+          要不要錢
+        </div>
+        <select
+          className='text-center h-[48px] w-[100%] rounded-md border-2 border-gray-200 cursor-pointer focus:bg-gray-100'
+          value={localSelectedFree}
+          onChange={handleFreeChange}
+        >
+          <option value="都可以">都可以</option>
+          <option value="要">要</option>
+          <option value="不要">不要</option>
+        </select>
+      </div>
+    </>
   );
 };
 
