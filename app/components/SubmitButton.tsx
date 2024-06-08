@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
 import { EventData, FilteredEventData } from '../interface/dataType';
@@ -40,7 +40,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
 
   const { data, error: swrError } = useSWR(url, fetcher);
 
-  const filterData = (data: FilteredEventData[]): FilteredEventData[] => {
+  const filterData = useCallback((data: FilteredEventData[]): FilteredEventData[] => {
     const selectedDateTimestamp = selectedDate.getTime();
     console.log("Filtering Data:");
     console.log("Selected Date Timestamp:", selectedDateTimestamp);
@@ -75,7 +75,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
 
       return isDateMatch && isCityMatch && isPriceMatch;
     });
-  };
+  }, [selectedDate, selectedCity, selectedFree]);
 
   const getCategory = (selectedFav: string): string => {
     switch (selectedFav) {
@@ -111,7 +111,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ selectedFav, selectedDate, 
       onFetchSuccess(true, filteredItems);
       setIsLoading(false);
     }
-  }, [data, onFetchSuccess]);
+  }, [data, onFetchSuccess, filterData]);
 
   useEffect(() => {
     if (swrError) {
