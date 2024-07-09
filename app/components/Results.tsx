@@ -1,7 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { FilteredEventData } from '../interface/dataType';
-import arrowLeft from '../../public/images/arrow_left.png'; // 更正导入语法
+import arrowLeft from '../../public/images/arrow_left.png';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 
 interface ResultsProps {
   data: FilteredEventData[];
@@ -25,9 +27,14 @@ const Results: React.FC<ResultsProps> = ({ data, onBack }) => {
               <h2 className='text-xl sm:text-2xl text-sky-600'>{data.title}</h2> 
               <p className='text-sm sm:text-base break-words'>開始時間: {data.time}</p> 
               <p className='text-sm sm:text-base break-words'>結束時間: {data.endTime}</p> 
-              <p className='text-sm sm:text-base break-words'>活動地點: {data.location} - {data.locationName}</p> 
+              <p className='text-sm sm:text-base break-words'>活動地點: {data.locationName} - {data.location}</p> 
               <p className='text-sm sm:text-base break-words'>活動收費: {data.price ? data.price : '免費'}</p>
-              <p className='text-sm sm:text-base break-words'>活動介紹：<span dangerouslySetInnerHTML={{ __html: data.descriptionFilterHtml }} /></p>
+              <Typography variant="body2" className='text-sm sm:text-base break-words'>
+                活動網頁連結：
+                <Link href={data.sourceWebPromote} target="_blank" rel="noopener">
+                  點擊查看
+                </Link>
+              </Typography>
             </li>
           ))}
         </ul>

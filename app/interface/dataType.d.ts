@@ -42,7 +42,7 @@ export interface EventData {
 
 export interface FilteredEventData {
   title: string;
-  descriptionFilterHtml: string;
+  sourceWebPromote: string;
   time: string;
   location: string;
   price: string;
