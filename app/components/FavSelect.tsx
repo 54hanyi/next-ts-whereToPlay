@@ -29,7 +29,7 @@ const FavSelect: React.FC<FavSelectProps> = ({ onSelectChange, favOptions, selec
   };
 
   return (
-    <div className='w-[40%]'>
+    <div className='w-[40%] my-1'>
       <Autocomplete
         value={favOptions.find(option => option.value === localSelectedFav)?.label || ''}
         onChange={handleFavChange}

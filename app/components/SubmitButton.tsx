@@ -30,7 +30,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
     <>
       <Button
         variant="contained"
-        color="primary"
+        color="secondary"
         onClick={handleSubmit}
         disabled={isLoading}
         sx={{
@@ -38,7 +38,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
           height: '48px',
           width: '30%',
           '&:hover': {
-            backgroundColor: '#029ae8', 
+            backgroundColor: '#91dcfb', 
           },
         }}
       >

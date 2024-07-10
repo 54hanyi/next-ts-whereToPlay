@@ -27,7 +27,7 @@ const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange, f
   };
 
   return (
-    <div className='w-[40%]'>
+    <div className='w-[40%] my-1'>
       <Autocomplete
         value={freeOptions.find(option => option.value === localSelectedFree)?.label || '都可以'}
         onChange={handleFreeChange}
@@ -59,7 +59,6 @@ const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange, f
             }} 
           />
         )}
-        sx={{ width: '100%' }}
       />
     </div>
   );

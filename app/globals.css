@@ -4,22 +4,22 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 225,225,225;
-  --background-end-rgb: 225,225,225;
+  --background-start-rgb:	175, 229, 251;
+  --background-end-rgb:	175, 229, 251;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 50, 50, 50;
-    --background-end-rgb: 50, 50, 50;
+    --background-start-rgb:	175, 229, 251;
+    --background-end-rgb: 175, 229, 251;
   }
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: 
-    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(rgba(175, 229, 251, 0.3), rgba(175, 229, 251, 0.1)),
     url('/images/background.jpg');
   background-size: cover; 
   background-repeat: no-repeat; 

@@ -39,7 +39,17 @@ const Results: React.FC<ResultsProps> = ({ data, onBack }) => {
           ))}
         </ul>
       ) : (
-        <p className='text-center'>沒地方去，待在家吧</p>
+        <div className="flex flex-col justify-center items-center">
+          <p className='text-3xl p-3'>沒地方去，待在家吧</p>
+          <Image
+            src="/images/404.png"
+            alt="Stay at home"
+            width={200}
+            height={200} 
+            layout="fixed" 
+            priority 
+          />
+        </div>
       )}
     </div>
   );

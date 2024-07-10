@@ -19,7 +19,7 @@ const theme = createTheme({
       main: '#0284c7',
     },
     secondary: {
-      main: '#029ae8',
+      main: '#9ddff9',
     },
     error: {
       main: '#ff0000',
@@ -61,6 +61,7 @@ export default function RootLayout({
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        <link rel="preload" href="/images/background.jpg" as="image"></link>
       </head>
       <body className={inter.className}>
         <CacheProvider value={clientSideEmotionCache}>

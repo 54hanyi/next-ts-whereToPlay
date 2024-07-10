@@ -26,7 +26,7 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedCity, onSelectChange, c
   };
 
   return (
-    <div className='w-[40%]'>
+    <div className='w-[40%] my-1'>
       <Autocomplete
         value={localSelectedCity}
         onChange={handleCityChange}
@@ -58,7 +58,6 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedCity, onSelectChange, c
             }} 
           />
         )}
-        sx={{ width: '100%' }}
       />
     </div>
   );
