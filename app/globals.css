@@ -20,7 +20,8 @@ body {
   color: rgb(var(--foreground-rgb));
   background: 
     linear-gradient(rgba(175, 229, 251, 0.3), rgba(175, 229, 251, 0.1)),
-    url('/images/background.webp');
+    url('/images/background.webp'),
+    url('/images/background.jpg'); /* 後備方案 */
   background-size: cover; 
   background-repeat: no-repeat; 
   background-attachment: fixed; 
