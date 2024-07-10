@@ -24,7 +24,7 @@ const Results: React.FC<ResultsProps> = ({ data, onBack }) => {
         <ul className='list-decimal w-full p-4 space-y-4'>
           {data.map((data, index) => (
             <li key={index} className='space-y-2 w-full border-b pb-4'>
-              <h2 className='text-xl sm:text-2xl text-sky-600'>{data.title}</h2> 
+              <h2 className='text-xl sm:text-2xl text-sky-600 font-bold'>{data.title}</h2> 
               <p className='text-sm sm:text-base break-words'>開始時間: {data.time}</p> 
               <p className='text-sm sm:text-base break-words'>結束時間: {data.endTime}</p> 
               <p className='text-sm sm:text-base break-words'>活動地點: {data.locationName} - {data.location}</p> 
