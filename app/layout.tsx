@@ -61,8 +61,8 @@ export default function RootLayout({
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-        <link rel="preload" href="/images/background.webp" as="image"></link>
-        <link rel="preload" href="/images/background.jpg" as="image" />
+        {/* <link rel="preload" href="/images/background.webp" as="image" />
+        <link rel="preload" href="/images/background.jpg" as="image" /> */}
       </head>
       <body className={inter.className}>
         <CacheProvider value={clientSideEmotionCache}>
