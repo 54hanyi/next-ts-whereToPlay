@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { FilteredEventData } from '../interface/dataType';
-import arrowLeft from '../../public/images/arrow_left.png';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
@@ -17,7 +16,7 @@ const Results: React.FC<ResultsProps> = ({ data, onBack }) => {
         className='flex items-center mb-4 text-center rounded-md cursor-pointer hover:text-sky-600'
         onClick={onBack}
       >
-        <Image src={arrowLeft} alt="Back arrow" width={24} height={24} /> 
+        <Image src="/images/arrow_left.webp" alt="Back arrow" width={24} height={24} /> 
         <span className='ml-2'>重新搜尋</span>
       </button>
       {data && data.length > 0 ? (
@@ -42,7 +41,7 @@ const Results: React.FC<ResultsProps> = ({ data, onBack }) => {
         <div className="flex flex-col justify-center items-center">
           <p className='text-3xl p-3'>沒地方去，待在家吧</p>
           <Image
-            src="/images/404.png"
+            src="/images/404.webp"
             alt="Stay at home"
             width={200}
             height={200} 

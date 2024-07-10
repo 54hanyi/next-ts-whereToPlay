@@ -61,7 +61,6 @@ const FavSelect: React.FC<FavSelectProps> = ({ onSelectChange, favOptions, selec
             }} 
           />
         )}
-        sx={{ width: '100%' }}
       />
     </div>
   );

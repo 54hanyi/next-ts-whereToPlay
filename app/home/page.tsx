@@ -19,23 +19,19 @@ export default function Page() {
 
   const handleFavSelected = (selectedFav: string) => {
     setSelectedFav(selectedFav);
-    // console.log("Selected fav value:", selectedFav);
   };
 
   const handleDateSelected = (selectedDate: Date) => {
     const date = selectedDate ? selectedDate : null;
     setSelectedDate(date);
-    // console.log("父組件所選日期:", date);
   };
 
   const handleCitySelected = (selectedCity: string) => {
     setSelectedCity(selectedCity);
-    // console.log("所選縣市:", selectedCity);
   };
 
   const handleFreeSelected = (selectedFree: string) => {
     setSelectedFree(selectedFree);
-    // console.log("要不要錢?", selectedFree);
   };
 
   const handleFetchSuccess = (success: boolean, data: any) => {
