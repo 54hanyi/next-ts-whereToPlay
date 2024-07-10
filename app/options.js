@@ -35,3 +35,9 @@ export const citiesOptions = [
   { value: "連江縣", label: "連江縣" },
   { value: "其他", label: "其他" },
 ];
+
+export const freeOptions = [
+  { label: "都可以", value: "都可以" },
+  { label: "要", value: "要" },
+  { label: "不要", value: "不要" },
+];

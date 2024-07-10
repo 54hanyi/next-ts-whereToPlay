@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 interface CitySelectProps {
   selectedCity: string;
@@ -8,45 +10,57 @@ interface CitySelectProps {
 
 const CitySelect: React.FC<CitySelectProps> = ({ selectedCity, onSelectChange, citiesOptions }) => {
   const [localSelectedCity, setLocalSelectedCity] = useState<string>('');
-  
+
   useEffect(() => {
     setLocalSelectedCity(selectedCity);
   }, [selectedCity]);
 
-  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = e.target.value;
-    if (selectedValue === "全台跑透透") {
+  const handleCityChange = (event: any, newValue: string | null) => {
+    if (newValue === "全台跑透透" || newValue === null) {
       setLocalSelectedCity('');
       onSelectChange('');
     } else {
-      setLocalSelectedCity(selectedValue);
-      onSelectChange(selectedValue); 
+      setLocalSelectedCity(newValue);
+      onSelectChange(newValue);
     }
   };
 
   return (
-    <>
-      <div className='w-[40%]'>
-        <div>
-          想去哪裡
-        </div>
-        <select
-          className='text-center h-[48px] w-[100%] rounded-md border-2 border-gray-200 cursor-pointer focus:bg-gray-100'
-          value={localSelectedCity}
-          onChange={handleCityChange}
-        >
-          {citiesOptions.map((city) => (
-            <option
-              key={city.value}
-              value={city.value}
-              disabled={city.disabled}
-            >
-              {city.label}
-            </option>
-          ))}
-        </select>
-      </div>
-    </>
+    <div className='w-[40%]'>
+      <Autocomplete
+        value={localSelectedCity}
+        onChange={handleCityChange}
+        options={citiesOptions.map(option => option.label)}
+        renderInput={(params) => (
+          <TextField 
+            {...params} 
+            label="想去哪裡" 
+            variant="outlined" 
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'black', // 默認邊框顏色
+                },
+                '&:hover fieldset': {
+                  borderColor: 'blue', // hover時的邊框顏色
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'blue', // focus時的邊框顏色
+                },
+              },
+              '& .MuiInputLabel-root': {
+                color: 'black', // 標籤顏色
+              },
+              '& .MuiInputBase-input': {
+                color: 'black', // 輸入文字顏色
+              },
+            }} 
+          />
+        )}
+        sx={{ width: '100%' }}
+      />
+    </div>
   );
 };
 

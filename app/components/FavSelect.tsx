@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 interface FavSelectProps {
   onSelectChange: (value: string) => void;
@@ -10,39 +12,58 @@ interface FavSelectProps {
 const FavSelect: React.FC<FavSelectProps> = ({ onSelectChange, favOptions, selected }) => {
   const [localSelectedFav, setLocalSelectedFav] = useState<string>('');
 
-  const handleFavChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = e.target.value;
-    setLocalSelectedFav(selectedValue);
-    onSelectChange(selectedValue);
-  };
-
   useEffect(() => {
     setLocalSelectedFav(selected);
   }, [selected]);
 
+  const handleFavChange = (event: any, newValue: string | null) => {
+    if (newValue === null) {
+      setLocalSelectedFav('');
+      onSelectChange('');
+    } else {
+      const selectedOption = favOptions.find(option => option.label === newValue);
+      const selectedValue = selectedOption ? selectedOption.value : '';
+      setLocalSelectedFav(selectedValue);
+      onSelectChange(selectedValue);
+    }
+  };
+
   return (
-    <>
-      <div className='w-[40%]'>
-        <div>
-          <p>您的喜好</p>
-        </div>
-        <select
-          className='text-center h-[48px] w-[100%] rounded-md border-2 border-gray-200 cursor-pointer focus:bg-gray-100'
-          value={localSelectedFav}
-          onChange={handleFavChange}
-        >
-          {favOptions.map((option) => (
-            <option
-              key={option.value}
-              value={option.value}
-              disabled={option.disabled}
-            >
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-    </>
+    <div className='w-[40%]'>
+      <Autocomplete
+        value={favOptions.find(option => option.value === localSelectedFav)?.label || ''}
+        onChange={handleFavChange}
+        options={favOptions.map(option => option.label)}
+        renderInput={(params) => (
+          <TextField 
+            {...params} 
+            label="您的喜好" 
+            variant="outlined" 
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'black', // 默認邊框顏色
+                },
+                '&:hover fieldset': {
+                  borderColor: 'blue', // hover時的邊框顏色
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'blue', // focus時的邊框顏色
+                },
+              },
+              '& .MuiInputLabel-root': {
+                color: 'black', // 標籤顏色
+              },
+              '& .MuiInputBase-input': {
+                color: 'black', // 輸入文字顏色
+              },
+            }} 
+          />
+        )}
+        sx={{ width: '100%' }}
+      />
+    </div>
   );
 };
 

@@ -1,41 +1,67 @@
 import { useState, useEffect } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 interface FreeSelectProps {
   selectedFree: string;
   onSelectChange: (value: string) => void;
+  freeOptions: { label: string; value: string; disabled?: boolean; selected?: boolean }[];
   required?: boolean;
 }
 
-const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange }) => {
+const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange, freeOptions }) => {
   const [localSelectedFree, setLocalSelectedFree] = useState<string>('都可以');
-  
+
   useEffect(() => {
     setLocalSelectedFree(selectedFree);
   }, [selectedFree]);
 
-  const handleFreeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = e.target.value;
-    setLocalSelectedFree(selectedValue);
-    onSelectChange(selectedValue);
+  const handleFreeChange = (event: any, newValue: string | null) => {
+    if (newValue === null) {
+      setLocalSelectedFree('都可以');
+      onSelectChange('都可以');
+    } else {
+      setLocalSelectedFree(newValue);
+      onSelectChange(newValue);
+    }
   };
 
   return (
-    <>
-      <div className='w-[40%]'>
-        <div>
-          要不要錢
-        </div>
-        <select
-          className='text-center h-[48px] w-[100%] rounded-md border-2 border-gray-200 cursor-pointer focus:bg-gray-100'
-          value={localSelectedFree}
-          onChange={handleFreeChange}
-        >
-          <option value="都可以">都可以</option>
-          <option value="要">要</option>
-          <option value="不要">不要</option>
-        </select>
-      </div>
-    </>
+    <div className='w-[40%]'>
+      <Autocomplete
+        value={freeOptions.find(option => option.value === localSelectedFree)?.label || '都可以'}
+        onChange={handleFreeChange}
+        options={freeOptions.map(option => option.label)}
+        renderInput={(params) => (
+          <TextField 
+            {...params} 
+            label="要不要錢" 
+            variant="outlined" 
+            sx={{
+              width: '100%',
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'black', // 默認邊框顏色
+                },
+                '&:hover fieldset': {
+                  borderColor: 'blue', // hover時的邊框顏色
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'blue', // focus時的邊框顏色
+                },
+              },
+              '& .MuiInputLabel-root': {
+                color: 'black', // 標籤顏色
+              },
+              '& .MuiInputBase-input': {
+                color: 'black', // 輸入文字顏色
+              },
+            }} 
+          />
+        )}
+        sx={{ width: '100%' }}
+      />
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { CacheProvider } from '@emotion/react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeProvider, CssBaseline, GlobalStyles } from '@mui/material';
 import createTheme from '@mui/material/styles/createTheme';
 import createEmotionCache from './utils/createEmotionCache';
 import { metadata } from './metadata';
@@ -24,8 +24,32 @@ const theme = createTheme({
     error: {
       main: '#ff0000',
     },
+    background: {
+      default: 'rgb(255, 247, 228)',
+      paper: 'rgb(255, 247, 228)',
+    },
+  },
+  typography: {
+    fontFamily: inter.style.fontFamily,
   },
 });
+
+const globalStyles = (
+  <GlobalStyles
+    styles={{
+      body: {
+        color: 'rgb(var(--foreground-rgb))',
+        background: 'linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        minHeight: '100vh',
+      },
+      '.text-balance': {
+        textWrap: 'balance',
+      },
+    }}
+  />
+);
 
 export default function RootLayout({
   children,
@@ -42,6 +66,7 @@ export default function RootLayout({
         <CacheProvider value={clientSideEmotionCache}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
+            {globalStyles}
             {children}
           </ThemeProvider>
         </CacheProvider>

@@ -6,7 +6,7 @@ import FavSelect from '../components/FavSelect';
 import CitySelect from '../components/CitySelect';
 import FreeSelect from '../components/FreeSelect';
 import SubmitButton from '../components/SubmitButton';
-import { favOptions, citiesOptions } from '../options';
+import { favOptions, citiesOptions, freeOptions } from '../options';
 import Results from '../components/Results';
 
 export default function Page() {
@@ -70,6 +70,7 @@ export default function Page() {
             <FreeSelect
               selectedFree={selectedFree}
               onSelectChange={handleFreeSelected}
+              freeOptions={freeOptions}
               required
             />
             <SubmitButton
