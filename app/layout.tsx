@@ -16,10 +16,10 @@ const clientSideEmotionCache = createEmotionCache();
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#0070f3',
+      main: '#0284c7',
     },
     secondary: {
-      main: '#19857b',
+      main: '#029ae8',
     },
     error: {
       main: '#ff0000',

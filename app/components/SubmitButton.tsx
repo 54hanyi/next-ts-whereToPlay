@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 import useFetchData from '../hooks/useFetchData';
 
 interface SubmitButtonProps {
@@ -27,19 +28,28 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
 
   return (
     <>
-      <button 
-        className='mt-6 text-center h-[48px] w-[30%] rounded-md cursor-pointer bg-gray-400 hover:bg-gray-500'
+      <Button
+        variant="contained"
+        color="primary"
         onClick={handleSubmit}
         disabled={isLoading}
+        sx={{
+          marginTop: '24px',
+          height: '48px',
+          width: '30%',
+          '&:hover': {
+            backgroundColor: '#029ae8', 
+          },
+        }}
       >
         {isLoading ? (
-          <div className="flex items-center justify-center text-white">
+          <div className="flex items-center justify-center text-black">
             努力尋找中...
           </div>
         ) : (
-          <h3 className="text-white">出發！</h3>
+          <h3 className="text-black">出發！</h3>
         )}
-      </button>
+      </Button>
       {validationError && (
         <p className="mt-2 text-red-600">{validationError}</p>
       )}

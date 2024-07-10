@@ -44,10 +44,10 @@ const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange, f
                   borderColor: 'black', // 默認邊框顏色
                 },
                 '&:hover fieldset': {
-                  borderColor: 'blue', // hover時的邊框顏色
+                  borderColor: 'primary', // hover時的邊框顏色
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: 'blue', // focus時的邊框顏色
+                  borderColor: 'primary', // focus時的邊框顏色
                 },
               },
               '& .MuiInputLabel-root': {
