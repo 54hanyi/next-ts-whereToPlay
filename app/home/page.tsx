@@ -54,7 +54,7 @@ export default function Page() {
             <FavSelect
               onSelectChange={handleFavSelected}
               favOptions={favOptions}
-              selected={selectedFav}
+              selectedFav={selectedFav}
               required
             />
             <DateInput onDateChange={handleDateSelected} selectedDate={selectedDate} required/>

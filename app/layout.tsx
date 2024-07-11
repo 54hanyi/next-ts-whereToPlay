@@ -39,9 +39,15 @@ const globalStyles = (
     styles={{
       body: {
         color: 'rgb(var(--foreground-rgb))',
-        background: 'linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb))',
+        background: `
+          linear-gradient(rgba(175, 229, 251, 0.3), rgba(175, 229, 251, 0.1)),
+          url('https://next-ts-where-to-play.vercel.app/images/background.webp'),
+          url('https://next-ts-where-to-play.vercel.app/images/background.jpg')
+        `,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
+        backgroundPosition: 'top',
         minHeight: '100vh',
       },
       '.text-balance': {

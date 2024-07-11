@@ -21,7 +21,7 @@ body {
   background: 
     linear-gradient(rgba(175, 229, 251, 0.3), rgba(175, 229, 251, 0.1)),
     url('https://next-ts-where-to-play.vercel.app/images/background.webp'),
-    url('https://next-ts-where-to-play.vercel.app/images/background.jpg'); /* 後備方案 */
+    url('https://next-ts-where-to-play.vercel.app/images/background.jpg'); /* 備案 */
   background-size: cover; 
   background-repeat: no-repeat; 
   background-attachment: fixed; 

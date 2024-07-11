@@ -2,38 +2,45 @@ import React, { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
+
+interface Option {
+  label: string;
+  value: string;
+  disabled?: boolean;
+  selected?: boolean;
+}
+
 interface FavSelectProps {
   onSelectChange: (value: string) => void;
   favOptions: { label: string; value: string; disabled?: boolean; selected?: boolean }[];
-  selected: string;
+  selectedFav: string;
   required?: boolean;
 }
 
-const FavSelect: React.FC<FavSelectProps> = ({ onSelectChange, favOptions, selected }) => {
-  const [localSelectedFav, setLocalSelectedFav] = useState<string>('');
+const FavSelect: React.FC<FavSelectProps> = ({ favOptions, selectedFav, onSelectChange }) => {
+  const [localSelectedFav, setLocalSelectedFav] = useState<Option | null>(null);
 
   useEffect(() => {
-    setLocalSelectedFav(selected);
-  }, [selected]);
+    const selectedOption = favOptions.find(option => option.value === selectedFav) || null;
+    setLocalSelectedFav(selectedOption);
+  }, [selectedFav, favOptions]);
 
-  const handleFavChange = (event: any, newValue: string | null) => {
-    if (newValue === null) {
-      setLocalSelectedFav('');
-      onSelectChange('');
-    } else {
-      const selectedOption = favOptions.find(option => option.label === newValue);
-      const selectedValue = selectedOption ? selectedOption.value : '';
-      setLocalSelectedFav(selectedValue);
-      onSelectChange(selectedValue);
-    }
+  const handleFavChange = (
+    event: React.SyntheticEvent,
+    newValue: Option | null
+  ) => {
+    setLocalSelectedFav(newValue);
+    onSelectChange(newValue ? newValue.value : '');
   };
 
   return (
     <div className='w-[40%] my-1'>
       <Autocomplete
-        value={favOptions.find(option => option.value === localSelectedFav)?.label || ''}
+        value={localSelectedFav}
         onChange={handleFavChange}
-        options={favOptions.map(option => option.label)}
+        options={favOptions}
+        getOptionLabel={(option) => option.label}
+        isOptionEqualToValue={(option, value) => option.value === value?.value}
         renderInput={(params) => (
           <TextField 
             {...params} 

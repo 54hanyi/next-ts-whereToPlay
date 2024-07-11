@@ -1,27 +1,38 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+
+interface CityOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
+  selected?: boolean;
+}
 
 interface CitySelectProps {
   selectedCity: string;
   onSelectChange: (value: string) => void;
-  citiesOptions: { label: string; value: string; disabled?: boolean; selected?: boolean }[];
+  citiesOptions: CityOption[];
 }
 
 const CitySelect: React.FC<CitySelectProps> = ({ selectedCity, onSelectChange, citiesOptions }) => {
-  const [localSelectedCity, setLocalSelectedCity] = useState<string>('');
+  const [localSelectedCity, setLocalSelectedCity] = useState<CityOption | null>(null);
 
   useEffect(() => {
-    setLocalSelectedCity(selectedCity);
-  }, [selectedCity]);
+    const selectedOption = citiesOptions.find(option => option.value === selectedCity) || null;
+    setLocalSelectedCity(selectedOption);
+  }, [selectedCity, citiesOptions]);
 
-  const handleCityChange = (event: any, newValue: string | null) => {
-    if (newValue === "全台跑透透" || newValue === null) {
-      setLocalSelectedCity('');
+  const handleCityChange = (
+    event: React.SyntheticEvent,
+    newValue: CityOption | null
+  ) => {
+    if (newValue?.value === "全台跑透透" || newValue === null) {
+      setLocalSelectedCity(null);
       onSelectChange('');
     } else {
       setLocalSelectedCity(newValue);
-      onSelectChange(newValue);
+      onSelectChange(newValue.value);
     }
   };
 
@@ -30,7 +41,9 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedCity, onSelectChange, c
       <Autocomplete
         value={localSelectedCity}
         onChange={handleCityChange}
-        options={citiesOptions.map(option => option.label)}
+        options={citiesOptions}
+        getOptionLabel={(option) => option.label}
+        isOptionEqualToValue={(option, value) => option.value === value?.value}
         renderInput={(params) => (
           <TextField 
             {...params} 
@@ -43,10 +56,10 @@ const CitySelect: React.FC<CitySelectProps> = ({ selectedCity, onSelectChange, c
                   borderColor: 'black', // 默認邊框顏色
                 },
                 '&:hover fieldset': {
-                  borderColor: 'primary', // hover時的邊框顏色
+                  borderColor: 'primary.main', // hover時的邊框顏色
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: 'primary', // focus時的邊框顏色
+                  borderColor: 'primary.main', // focus時的邊框顏色
                 },
               },
               '& .MuiInputLabel-root': {

@@ -1,37 +1,50 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+
+interface FreeOption {
+  label: string;
+  value: string;
+  disabled?: boolean;
+  selected?: boolean;
+}
 
 interface FreeSelectProps {
   selectedFree: string;
   onSelectChange: (value: string) => void;
-  freeOptions: { label: string; value: string; disabled?: boolean; selected?: boolean }[];
+  freeOptions: FreeOption[];
   required?: boolean;
 }
 
 const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange, freeOptions }) => {
-  const [localSelectedFree, setLocalSelectedFree] = useState<string>('都可以');
+  const [localSelectedFree, setLocalSelectedFree] = useState<FreeOption | null>(null);
 
   useEffect(() => {
-    setLocalSelectedFree(selectedFree);
-  }, [selectedFree]);
+    const selectedOption = freeOptions.find(option => option.value === selectedFree) || null;
+    setLocalSelectedFree(selectedOption);
+  }, [selectedFree, freeOptions]);
 
-  const handleFreeChange = (event: any, newValue: string | null) => {
+  const handleFreeChange = (
+    event: React.SyntheticEvent,
+    newValue: FreeOption | null
+  ) => {
     if (newValue === null) {
-      setLocalSelectedFree('都可以');
+      setLocalSelectedFree(null);
       onSelectChange('都可以');
     } else {
       setLocalSelectedFree(newValue);
-      onSelectChange(newValue);
+      onSelectChange(newValue.value);
     }
   };
 
   return (
     <div className='w-[40%] my-1'>
       <Autocomplete
-        value={freeOptions.find(option => option.value === localSelectedFree)?.label || '都可以'}
+        value={localSelectedFree}
         onChange={handleFreeChange}
-        options={freeOptions.map(option => option.label)}
+        options={freeOptions}
+        getOptionLabel={(option) => option.label}
+        isOptionEqualToValue={(option, value) => option.value === value?.value}
         renderInput={(params) => (
           <TextField 
             {...params} 
@@ -44,10 +57,10 @@ const FreeSelect: React.FC<FreeSelectProps> = ({ selectedFree, onSelectChange, f
                   borderColor: 'black', // 默認邊框顏色
                 },
                 '&:hover fieldset': {
-                  borderColor: 'primary', // hover時的邊框顏色
+                  borderColor: 'primary.main', // hover時的邊框顏色
                 },
                 '&.Mui-focused fieldset': {
-                  borderColor: 'primary', // focus時的邊框顏色
+                  borderColor: 'primary.main', // focus時的邊框顏色
                 },
               },
               '& .MuiInputLabel-root': {
