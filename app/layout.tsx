@@ -67,6 +67,8 @@ export default function RootLayout({
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        <link rel="icon" href="/favicon.ico"/>
+        <link rel="icon" type="image/png" href="/icon.webp" />
         <link rel="preload" href="https://next-ts-where-to-play.vercel.app/images/background.webp" as="image" />
         <link rel="preload" href="https://next-ts-where-to-play.vercel.app/images/background.jpg" as="image" />
       </head>
