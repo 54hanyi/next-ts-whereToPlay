@@ -1,37 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+1. **專案名稱與簡介**：
 
-## Getting Started
+   - 專案名稱：放假好去處
+   - 簡介：這是一個使用者輸入喜好、日期、地點等資訊，並根據條件查詢活動地點的 APP，讓使用者輕鬆規劃度假去處。
 
-First, run the development server:
+2. **技術堆疊**：
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+   - **框架**：Next.js (結合 React 18)
+   - **語言**：TypeScript 用於靜態型別檢查
+   - **樣式處理**：Tailwind CSS 搭配 MUI (Material UI) 用於界面設計，提升開發效率和 UI 一致性
+   - **狀態管理**：React Hooks（`useState`、`useEffect`、`useCallback`）
+   - **資料取得**：`axios` 搭配 `SWR` 處理資料抓取，提供資料的快取和重用功能
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **功能描述**：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   - **條件選擇**：用戶可以選擇喜好（如展覽、音樂表演等）、出發日期、地點及費用偏好，幫助篩選合適的活動
+   - **動態查詢**：根據使用者輸入的條件即時調用 API，並過濾符合條件的活動
+   - **結果顯示與重新查詢**：顯示符合條件的活動清單，並提供返回功能讓使用者重新選擇查詢條件
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+4. **架構概述**：
 
-## Learn More
+   - **目錄結構**：
+     - `components/`：包含可重用的 UI 元件，如 `CitySelect`、`FavSelect`、`SubmitButton`、`Results` 等
+     - `hooks/`：包含自定義 Hook，例如 `useFetchData` 用於資料抓取和過濾
+     - `pages/`：包含主要頁面視圖 `Page.tsx`
+     - `utils/`：包含工具函式，如 `createEmotionCache` 用於 Emotion 的快取處理
+   - **資料查詢與過濾**：
+     - 使用 SWR 和 axios 來處理 API 的資料抓取
+     - 根據使用者的條件過濾活動資料，包括費用、日期及地點等
 
-To learn more about Next.js, take a look at the following resources:
+5. **挑戰與解決方案**：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - **資料過濾**：為了達成用戶所需的精確結果，根據使用者選擇的不同條件，透過正則表達式和資料過濾邏輯來實現篩選功能
+   - **使用者體驗優化**：利用 MUI 的 `Autocomplete` 和 `DatePicker` 元件，提升選擇輸入的便捷性和使用體驗
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# next-ts-whereToPlay
+6. **未來規劃**：
+   - 增加更多篩選條件，如活動類型或天氣條件，以幫助使用者找到更符合需求的活動
+   - 優化 UI 設計，提升界面的美觀度與互動體驗
+   - 增加收藏功能，讓使用者可以保存感興趣的活動

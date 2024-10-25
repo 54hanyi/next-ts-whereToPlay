@@ -1,6 +1,6 @@
 {
   "name": "where-to-play",
-  "homepage": "https://54hanyi.github.io/next-ts-whereToPlay",
+  "homepage": "https://next-ts-where-to-play.vercel.app/",
   "version": "0.1.0",
   "private": true,
   "type": "module",
