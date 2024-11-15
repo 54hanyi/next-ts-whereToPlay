@@ -47,7 +47,7 @@ const globalStyles = (
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
-        backgroundPosition: 'top',
+        backgroundPosition: 'center',
         minHeight: '100vh',
       },
       '.text-balance': {
@@ -67,6 +67,7 @@ export default function RootLayout({
       <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.ico"/>
         <link rel="icon" type="image/png" href="/icon.webp" />
         <link rel="preload" href="https://next-ts-where-to-play.vercel.app/images/background.webp" as="image" />
