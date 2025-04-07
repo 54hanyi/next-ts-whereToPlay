@@ -13,14 +13,23 @@
 
 ## 🧪 使用技術與堆疊
 
-| 技術                   | 說明                                                       |
-| ---------------------- | ---------------------------------------------------------- |
-| **Next.js (React 18)** | 作為應用架構，提供頁面路由與伺服器端渲染支援               |
-| **TypeScript**         | 提供靜態型別檢查，降低資料處理錯誤                         |
-| **Tailwind CSS**       | 使用原子化 CSS 提升開發速度與一致性                        |
-| **MUI (Material UI)**  | 搭配元件庫實現 Autocomplete 與 DatePicker 等 UI 元件       |
-| **React Hooks**        | 使用 `useState`、`useEffect`、`useCallback` 處理狀態與事件 |
-| **axios + SWR**        | 串接活動 API，支援快取、重試與資料更新機制                 |
+- **Next.js (React 18)**  
+  使用 React + Next.js 建構應用，支援路由與頁面管理。
+
+- **TypeScript**  
+  加入靜態型別檢查，提升開發效率與程式可讀性。
+
+- **Tailwind CSS**  
+  原子化樣式工具，快速建構 RWD 並提升維護性。
+
+- **MUI (Material UI)**  
+  輔助輸入元件使用（如 Autocomplete、DatePicker），增強表單體驗。
+
+- **React Hooks**  
+  利用 `useState`、`useEffect`、`useCallback` 管理條件與查詢邏輯。
+
+- **axios + SWR**  
+  axios 負責抓資料，SWR 管理快取與更新邏輯，提升使用者體驗。
 
 ---
 
